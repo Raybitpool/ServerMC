@@ -1,0 +1,14 @@
+variables:
+  remaining_lives:
+    variable_type: PLAYER
+    value_type: INTEGER
+    initial_value: 3
+    limitations:
+      min_value: 0
+
+  hotbarRandom:
+    variable_type: PLAYER
+    value_type: INTEGER
+    initial_value: 0
+    limitations:
+      min_value: 0

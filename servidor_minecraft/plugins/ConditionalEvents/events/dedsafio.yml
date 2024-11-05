@@ -1,0 +1,122 @@
+Events:
+  ruletas:
+    type: player_command
+    conditions:
+    - '%main_command% == /ruleta'
+    - '%arg_1% == verde execute verde'
+
+    - '%arg_1% == turqueza1 execute turqueza1'
+    - '%arg_1% == turqueza2 execute turqueza2'
+    
+    - '%arg_1% == roja1 execute roja1'
+    - '%arg_1% == roja2 execute roja2'
+
+    - '%arg_1% == naranja1 execute naranja1'
+    - '%arg_1% == naranja2 execute naranja2'
+    - '%arg_1% == naranja3 execute naranja3'
+
+
+    - '%arg_1% == rosada execute rosada'
+    - '%arg_1% == morada execute morada'
+    - '%arg_1% == azul execute azul'
+    - '%arg_1% == amarilla execute amarilla'
+    - '%player% == Raybitpool'
+    actions:
+      default:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.muerte'
+      verde:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.verde'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"MISION DIARIA:"}]'
+
+
+      turqueza1: #Mision armor diamante
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.turqueza'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"MISION DIARIA:","bold":true,"color":"aqua"},{"text":"\n","bold":true},
+                                {"text":"Prepararse para sobrevivir no será facil. La minima protección es el diamante.","bold":true,"color":"aqua"},
+                                {"text":"\n"},{"text":"-Craftea una armadura completa de diamante,\npara la recompensa entregalo en el mini-templo de 0 0",
+                                "italic":true,"color":"aqua"}]'
+      - 'console_command: ce enable mision1'
+
+      turqueza2:  #nada
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.turqueza'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"MISION DIARIA:","bold":true,"color":"aqua"},{"text":"\n","bold":true},
+                                {"text":"Prepararse para sobrevivir no será facil. La minima protección es el diamante.","bold":true,"color":"aqua"},
+                                {"text":"\n"},{"text":"-Craftea una armadura completa de diamante,\npara la recompensa entregalo en el mini-templo de 0 0",
+                                "italic":true,"color":"aqua"}]'
+      - 'console_command: ce enable mision1'
+
+
+      rosada:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.rosada'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"\u27a4 ","color":"#f659ba"},
+                               {"text":"CAMBIO DE DIFICULTAD:","bold":true,"color":"#f659ba"},{"text":"\n\n"},
+                               {"text":"Texto de prueba para ruletas del dedsafio por AdeAbel","color":"#f27ad9"}]'
+ 
+ 
+      roja1:  #Arañas buffos
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.roja'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"CAMBIO DIFICULTAD ++:\n-Las arañas tienen una probabilidad de 1/2 de aparecer con un efecto mejorado.\nEste efecto puede ser: FireResistance, Regeneration II,\nSpeed III, Strength II o incluso Resistence I\nEsto acaba de comenzar...","bold":true,"color":"dark_red"},{"text":"\n "}]'
+      - 'console_command: ce enable aragnasBuff'
+      roja2:   #Creeper cargados
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.roja'
+      - 'wait: 14'
+      - 'to_all: json_message: {"text":"CAMBIO DIFICULTAD ++:\n-Los creepers han sufrido una pequeña llovizna con la Dana,\nahora estan perpetuamente cargados.","bold":true,"color":"dark_red"}'
+      - 'console_command: ce enable chargedCreeper'
+
+
+
+
+      naranja1:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.naranja'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"CAMBIO DE DIFICULTAD:","bold":true,"color":"gold"},{"text":"\n-Ahora los botones te dejan a medio corazón","color":"gold"}]'
+      - 'console_command: ce enable botonesMatan'
+      naranja2:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.naranja'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"CAMBIO DE DIFICULTAD:","bold":true,"color":"gold"},{"text":"\nLos zombies hacen el doble de daño","color":"gold"},{"text":"\n "}]'
+      - 'console_command: ce enable zombiesDobleDagno'
+      naranja3:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.naranja'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"CAMBIO DE DIFICULTAD:","bold":true,"color":"gold"},{"text":"\nMucho cuidado, los botones eran el comienzo.\n","color":"gold"},{"text":"Ahora las puertas te matan al interactuar con ellas.","bold":true,"color":"gold"},{"text":"\n "}]'
+      - 'console_command: ce enable puertasMortales'
+
+
+
+      morada:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.morada'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"\u27a4 ","color":"#9c37fe"},
+                               {"text":"CASTIGO:","bold":true,"color":"#9c37fe"},{"text":"\n\n"},
+                               {"text":"Texto de prueba para ruletas del dedsafio por AdeAbel","color":"#af52fa"}]'
+      azul:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.azul'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"\u27a4 ","color":"#302ee5"},
+                               {"text":"CAMBIO DE DIFICULTAD:","bold":true,"color":"#302ee5"},{"text":"\n\n"},
+                               {"text":"Texto de prueba para ruletas del dedsafio por AdeAbel","color":"#4470d3"}]'
+      amarilla:
+      - 'cancel_event: true'
+      - 'console_command: tag @a add anim.ruleta.amarilla'
+      - 'wait: 14'
+      - 'to_all: json_message: ["",{"text":"\u27a4 ","color":"#E2CE01"},
+                               {"text":"DEDCICLOPEDIA:","bold":true,"color":"#E2CE01"},{"text":"\n\n"},
+                               {"text":"Texto de prueba para ruletas del dedsafio por AdeAbel","color":"#D7A800"}]'

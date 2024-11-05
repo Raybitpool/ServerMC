@@ -1,0 +1,161 @@
+Events:
+  
+  totemsMensaje:
+    enabled: true
+    type: custom
+    custom_event_data:
+      event: org.bukkit.event.entity.EntityResurrectEvent
+      player_variable: getEntity()
+      variables_to_capture:
+      - '%res%;isCancelled()'
+    conditions:
+    - '%res% equals false'
+    actions:
+      default:
+      - 'to_all: message: %player% ha consumido un totem'
+  muerte:
+    enabled: true
+    type: player_death
+    actions:
+      default:
+      - 'console_command: tag @a add anim.muerte'
+      - 'player_command_as_op: title @a actionbar {"text":"%player% ha muerto","color":"dark_red"}'
+      - 'gamemode: SPECTATOR'
+      - 'console_command: playsound minecraft:entity.blaze.death master @a ~ ~ ~ 100'
+  
+  
+  lavaFuegoDagnox2: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: player_damage
+    conditions:
+    - '%playerblock_inside% == LAVA'
+    - '%cause% == FIRE_TICK execute actions2'
+    actions:
+      default:
+      - 'set_damage: 200%'
+      actions2:
+      - 'set_damage: 150%'
+  blazesTeleport: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: custom
+    custom_event_data:
+      event: org.bukkit.event.entity.EntityDamageByEntityEvent
+      player_variable: getEntity()
+      variables_to_capture:
+      - '%damager%;getDamager().getShooter()'
+      - '%damager_world%;getDamager().getShooter().getLocation().getWorld().getName()'
+      - '%damager_x%;getDamager().getShooter().getLocation().getX()'
+      - '%damager_y%;getDamager().getShooter().getLocation().getY()'
+      - '%damager_z%;getDamager().getShooter().getLocation().getZ()'
+      - '%damager_id%;getDamager().getShooter().getUniqueId()'
+    conditions:
+    - '%damager% == CraftBlaze'
+    actions:
+      default:
+      - 'console_command: tp %damager_id% %player%'
+      - 'teleport: %damager_world%; %damager_x%; %damager_y%; %damager_z%; 90; 0'
+  modoUhc: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: call
+    actions:
+      default:
+      - 'console_command: gamerule naturalRegeneration false'
+  chargedCreeper: # Programada como roja2
+    enabled: false
+    type: entity_spawn
+    conditions:
+    - '%entity% == CREEPER'
+    - '%reason% == NATURAL'
+    actions:
+      default:
+      - 'cancel_event: true'
+      - 'console_command: summon creeper %entity_x% %entity_y% %entity_z% {powered:1}'
+  aragnasBuff: # Programada como roja1
+    enabled: false
+    type: entity_spawn
+    conditions:
+    - '%entity% == SPIDER'
+    - '%reason% == NATURAL'
+    - '%random_1_10% == 1 execute action1'
+    - '%random_1_10% == 2 execute action2'
+    - '%random_1_10% == 3 execute action3'
+    - '%random_1_10% == 4 execute action4'
+    - '%random_1_10% == 5 execute action5'
+    actions:
+      action1: # Fuerza
+        - 'cancel_event: true'
+        - 'console_command: summon spider %entity_x% %entity_y% %entity_z% {ActiveEffects:[{Id:5,Amplifier:1,Duration:1000000}]}'
+      action2: # Regeneration
+        - 'cancel_event: true'
+        - 'console_command: summon spider %entity_x% %entity_y% %entity_z% {ActiveEffects:[{Id:10,Amplifier:1,Duration:1000000}]}'
+      action3: # Resistance
+        - 'cancel_event: true'
+        - 'console_command: summon spider %entity_x% %entity_y% %entity_z% {ActiveEffects:[{Id:11,Amplifier:0,Duration:1000000}]}'
+      action4: # FireRes
+        - 'cancel_event: true'
+        - 'console_command: summon spider %entity_x% %entity_y% %entity_z% {ActiveEffects:[{Id:12,Amplifier:0,Duration:1000000}]}'
+      action5: # Speed
+        - 'cancel_event: true'
+        - 'console_command: summon spider %entity_x% %entity_y% %entity_z% {ActiveEffects:[{Id:1,Amplifier:2,Duration:1000000}]}'
+  caida: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: player_damage
+    conditions:
+    - '%cause% == FALL'
+    actions:
+      default:
+      - 'set_damage: 300%'
+  totemsFallan: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: custom
+    custom_event_data:
+      event: org.bukkit.event.entity.EntityResurrectEvent
+      player_variable: getEntity()
+      variables_to_capture:
+      - '%res%;isCancelled()'
+    conditions:
+    - '%res% equals false'
+    - '%random_1_10% == 7'
+    actions:
+      default:
+      - 'cancel_event: true'
+      - 'to_all: message: El totem de %player% ha fallado'
+  cobwebs: # SIN PROGRAMARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    enabled: false
+    type: player_damage
+    conditions:
+    - '%damager_type% == SPIDER'
+    actions:
+      default:
+      - 'set_block: location:%player_x%,%player_y%,%player_z%,world;id:COBWEB'
+  botonesMatan: # Programada como narnaja1
+    enabled: false
+    type: block_interact
+    conditions:
+    - '%block% contains _BUTTON'
+    actions:
+      default:
+      - 'console_command: attribute %player% minecraft:generic.max_health base set
+        1'
+      - 'wait_ticks: 1'
+      - 'console_command: effect give %player% minecraft:instant_health 1 1'
+      - 'wait_ticks: 2'
+      - 'console_command: attribute %player% minecraft:generic.max_health base set
+        20'
+  puertasMortales: # Programada como narnaja3
+    enabled: false
+    type: block_interact
+    conditions:
+    - '%block% contains _DOOR'
+    actions:
+      default:
+      - 'damage: 99999'
+  zombiesDobleDagno: # Programada como narnaja2
+    enabled: false
+    type: player_damage
+    conditions:
+    - '%damager_type% contains ZOMBIE'
+    actions:
+      default:
+      - 'set_damage: 200%'
+

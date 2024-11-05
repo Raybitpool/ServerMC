@@ -1,0 +1,46 @@
+Events:
+  mision1: # Entregar una armadura full diamante
+    enabled: false
+    type: player_close_inventory
+    one_time: true
+    conditions:
+    - '%checkitem_mat:DIAMOND_HELMET% == yes'
+    - '%checkitem_mat:DIAMOND_CHESTPLATE% == yes'
+    - '%checkitem_mat:DIAMOND_LEGGINGS% == yes'
+    - '%checkitem_mat:DIAMOND_BOOTS% == yes'
+    actions:
+      default:
+      - 'json_message: ["",{"text":"MISION DIARIA:","bold":true,"color":"aqua"},{"text":"\n"},
+        {"text":"!!Felicidades!! Has completado la misión diaria","color":"aqua"}]'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_LAUNCH;10;1'
+      - 'playsound: BLOCK_NOTE_BLOCK_BELL;10;1'
+      - 'playsound: BLOCK_BELL_USE;20;1'
+      - 'wait_ticks: 4'
+      - 'playsound: BLOCK_NOTE_BLOCK_BELL;20;1'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_LAUNCH;10;1'
+      - 'playsound: BLOCK_BELL_USE;10;2'
+      - 'wait_ticks: 4'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_LAUNCH;10;1'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_LARGE_BLAST;10;0.5'
+      - 'wait: 2'
+      - 'console_command: svar set misionCompletada 1 %player%'
+  misionEntrega: # Permatrue, tener cuidado de como poner siguientes misiones
+    type: block_interact
+    enabled: true
+    conditions:
+    - '%block_x% == 289'
+    - '%block_y% == 71'
+    - '%block_z% == 764'
+    - '%block_world% == world'
+    - '%block% == NETHERITE_BLOCK'
+    - '%action_type% == RIGHT_CLICK'
+    - '%servervariables_value_otherplayer_{player}:misionCompletada% == 1'
+    actions:
+      default:
+      - 'console_command: svar set misionCompletada 0 %player%'
+      - 'to_all: message: &l&e&l%player% &eha entregado la mision'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_BLAST;10;1'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_LAUNCH;10;1'
+      - 'wait_ticks: 5'
+      - 'playsound: ENTITY_FIREWORK_ROCKET_BLAST;20;0.5'
+      - 'give_item: id:GOLDEN_APPLE;amount:10;'
